@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
             {
                 headers: {
                     Authorization: `Basic ${Buffer.from(
-                        "abdoudu78130@gmail.com:ATATT3xFfGF0evmNNi9svxdq_rhkF0o2JO68peR4AOBD53q2dNkM4mUa1kXoMJeiA72-IQuautzEvkMXaCXxiYGHJ_fa3Z1YJy8iZd0zxYMaznZq-sRfjffiDPi-K_AdHxI58mVDvAlks0O4QOAtklkg-_LNhaVcgzgMexFIFv4uOOxxDj94jMs=BE6DCD71",
+                        "EMAIL:API_KEY",
                     ).toString("base64")}`,
                     Accept: "application/json",
                 },
