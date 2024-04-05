@@ -72,6 +72,30 @@ router.post("/issues/unassign", async (req, res) => {
     }
 });
 
+router.post("/issues/assign", async (req, res) => {
+
+    if (!req.body.assignee) {
+        return res.status(400).send("Assignee is required.");
+    }
+
+    if (!req.body.issueId) {
+        return res.status(400).send("Issue ID is required.");
+    }
+
+    try {
+        const unassignURL = `${jiraBaseURL}/rest/api/3/issue/${req.body.issueId}/assignee`;
+        const response = await axios.put(unassignURL, { accountId: req.body.assignee }, axiosConfig);
+
+        res.status(204).send();
+    } catch (error) {
+        console.error("Error assigning issue:", error.message);
+        if (error.response.status === 404) {
+            return res.status(404).send("Issue not found.");
+        }
+        res.status(500).send("Failed to assign issue.");
+    }
+});
+
 router.get("/issues/assigned/:assignee", async (req, res) => {
     try {
         const issueURL = `${jiraBaseURL}/rest/agile/1.0/board/1/epic/none/issue?jql=assignee=${req.params.assignee}`;
