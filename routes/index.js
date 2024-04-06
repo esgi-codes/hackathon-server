@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  // OK to act as a health check for aws  
+  res.send('OK');
 });
 
 router.get('/health', function (req, res, next) {
